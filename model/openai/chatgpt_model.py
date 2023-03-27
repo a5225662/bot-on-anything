@@ -183,6 +183,7 @@ class Session(object):
         :return: query content with conversaction
         '''
         session = user_session.get(user_id, [])
+        print(session)
         if len(session) == 0:
             system_prompt = model_conf(const.OPEN_AI).get("character_desc", "")
             system_item = {'role': 'system', 'content': system_prompt}
@@ -195,9 +196,10 @@ class Session(object):
     @staticmethod
     def save_session(query, answer, user_id, used_tokens=0):
         max_tokens = model_conf(const.OPEN_AI).get('conversation_max_tokens')
-        if not max_tokens or max_tokens > 4000:
-            # default value
-            max_tokens = 1000
+        print(user_session.get(user_id),[])
+        # if not max_tokens or max_tokens > 4000:
+        #     # default value
+        #     max_tokens = 1000
         session = user_session.get(user_id)
         if session:
             # append conversation
