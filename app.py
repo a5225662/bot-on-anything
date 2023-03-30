@@ -18,6 +18,8 @@ def start_process(channel_type):
     # startup channel
     channel.startup()
 
+# nohup 488ff66ad4ce16a1611899e8bb436a68_venv/bin/gunicorn -b 0.0.0.0:8081 app:http_app > nohup.out &
+config.load_config()
 
 if __name__ == '__main__':
     try:
