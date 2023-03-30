@@ -4,6 +4,7 @@ import config
 from channel import channel_factory
 from common import log, const
 from multiprocessing import Pool
+from channel.http.http_channel import http_app
 
 
 # 启动通道

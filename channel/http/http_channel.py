@@ -5,7 +5,7 @@ from channel.http import auth
 from flask import Flask, request, render_template, make_response
 from datetime import timedelta
 from common import const
-from config import channel_conf
+from config import channel_conf,load_config,config
 from channel.channel import Channel
 http_app = Flask(__name__,)
 # 自动重载模板文件
@@ -62,5 +62,8 @@ class HttpChannel(Channel):
         context = dict()
         id = data["id"]
         context['from_user_id'] = str(id)
+        # 为http模式加入更新配置的功能
+        if data["msg"] == "#更新配置":
+            config = load_config()
         return super().build_reply_content(data["msg"], context)
 

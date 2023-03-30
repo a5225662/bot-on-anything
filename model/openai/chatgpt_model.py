@@ -1,7 +1,7 @@
 # encoding:utf-8
 
 from model.model import Model
-from config import model_conf
+from config import model_conf,config,load_config
 from common import const
 from common import log
 import openai
@@ -25,6 +25,10 @@ class ChatGPTModel(Model):
             if query == '#清除记忆':
                 Session.clear_session(from_user_id)
                 return '记忆已清除'
+            elif query == '#更新配置':
+                Session.clear_session(from_user_id)
+                config = load_config()
+                return '配置已更新'
 
             new_query = Session.build_session_query(query, from_user_id)
             log.debug("[CHATGPT] session query={}".format(new_query))

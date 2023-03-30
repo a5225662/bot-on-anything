@@ -32,7 +32,7 @@ ConvState.prototype.sendMessage = function (msg) {
         this.scrollDown();
     }.bind(this), 100);
 
-    var messageObj = $('<div class="message to typing"><div class="typing_loader"></div></div>');
+    var messageObj = $('<div class="message to typing">chatGPT正在为您生成内容,持续提问有可能会打断正在生成的内容<div class="typing_loader"></div></div>');
     setTimeout(function () {
         $(this.wrapper).find('#messages').append(messageObj);
         this.scrollDown();
