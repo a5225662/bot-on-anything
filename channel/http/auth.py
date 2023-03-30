@@ -69,7 +69,7 @@ def authenticate(password):
     :return: json
     """
     authPassword = channel_conf(const.HTTP).get('http_auth_password')
-    if (authPassword != password):
+    if not( password in authPassword):
         return False
     else:
         login_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -95,7 +95,7 @@ def identify(request):
                 authPassword = channel_conf(
                     const.HTTP).get('http_auth_password')
                 password = payload['data']['id']
-                if (password != authPassword):
+                if not(password in authPassword):
                     return False
                 else:
                     return True
